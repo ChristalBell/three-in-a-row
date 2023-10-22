@@ -7,10 +7,12 @@ const Scoreboard = () => {
       <div className=" flex">
         <div>
           <h2>Wins Player X</h2>
+          <input type="text" name="playerx"></input>
         </div>
 
         <div>
           <h2>Wins Player O</h2>
+          <input type="text" name="playero"></input>
         </div>
       </div>
     </div>
