@@ -3,6 +3,7 @@ import "./App.scss";
 import Gameboard from "./components/Gameboard";
 import Resets from "./components/Resets";
 import Scoreboard from "./components/Scoreboard";
+import Square from "./components/Square";
 
 function App() {
   const WINNINGS = [
@@ -21,6 +22,8 @@ function App() {
 
   const [board, setBoard] = useState(Array(9).fill(null));
   const [player1, setPlayer1] = useState(true);
+  const [score, setScore] = useState({ xScore: 0, oScore: 0 });
+  const [gameover, setGameover] = useState(false);
 
   const handleClick = (squareIdx) => {
     const updateBoard = board.map((value, idx) => {
@@ -30,7 +33,21 @@ function App() {
         return value;
       }
     });
-    checkWinner(updateBoard);
+
+    const winner = checkWinner(updateBoard);
+
+    if (winner) {
+      if (winner === "O") {
+        let { oScore } = score;
+        oScore += 1;
+        setScore({ ...score, oScore });
+      } else {
+        let { xScore } = score;
+        xScore += 1;
+        setScore({ ...score, xScore });
+      }
+    }
+
     setBoard(updateBoard);
     setPlayer1(!player1);
   };
@@ -40,18 +57,22 @@ function App() {
       const [x, y, z] = WINNINGS[i];
 
       if (board[x] && board[x] === board[y] && board[y] === board[z]) {
-        console.log(board[x]);
+        setGameover(true);
         return board[x];
       }
     }
   };
 
+  const resetBoard = () => {
+    setGameover(false);
+    setBoard(Array(9).fill(null));
+  };
   return (
     <div className="App">
       <h1 className="flex"> Three In A Row </h1>
-      <Scoreboard />
-      <Gameboard board={board} onClick={handleClick} />
-      <Resets />
+      <Scoreboard score={score} player1={player1} />
+      <Gameboard board={board} onClick={gameover ? resetBoard : handleClick} />
+      <Resets resetBoard={resetBoard} />
     </div>
   );
 }
