@@ -1,9 +1,18 @@
 * {
+  background-color: hsl(208, 100%, 95%);
   box-sizing: border-box;
+}
+.App {
 }
 
 button {
+  background-color: #fafafa;
+  border-radius: 0.75rem;
+  color: rgb(51, 47, 47);
+  font-size: 8rem;
+  font-weight: bolder;
   height: 10rem;
+  margin: 1rem;
   width: 10rem;
 }
 
@@ -14,7 +23,12 @@ button {
 
 .gameboard {
   display: grid;
-  grid-template-columns: repeat(3, 10rem);
-  place-items: center;
+  grid-template-columns: repeat(3, 12rem);
+
   justify-content: center;
+  place-items: center;
+}
+
+.scoreboard {
+  font-size: 2rem;
 }

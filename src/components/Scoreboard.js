@@ -3,17 +3,17 @@ import React from "react";
 const Scoreboard = ({ score, player1 }) => {
   const { xScore, oScore } = score;
   return (
-    <div>
+    <div className="scoreboard">
       <h3 className="flex">Turn </h3>
-      <div className=" flex">
+      <div className="flex  ">
         <div>
-          <h2>Wins Player X</h2>
-          <input type="text" name="playerx" placeholder={xScore}></input>
+          <h2> Player X</h2>
+          <h3>{xScore}</h3>
         </div>
 
         <div>
-          <h2>Wins Player O</h2>
-          <input type="text" name="playero" placeholder={oScore}></input>
+          <h2> Player O</h2>
+          <h3>{oScore}</h3>
         </div>
       </div>
     </div>

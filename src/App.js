@@ -67,12 +67,18 @@ function App() {
     setGameover(false);
     setBoard(Array(9).fill(null));
   };
+
+  const resetScore = () => {
+    setGameover(false);
+    setScore(0);
+  };
+
   return (
     <div className="App">
       <h1 className="flex"> Three In A Row </h1>
       <Scoreboard score={score} player1={player1} />
       <Gameboard board={board} onClick={gameover ? resetBoard : handleClick} />
-      <Resets resetBoard={resetBoard} />
+      <Resets resetScore={resetScore} resetBoard={resetBoard} />
     </div>
   );
 }
